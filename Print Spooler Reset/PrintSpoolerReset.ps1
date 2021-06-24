@@ -1,11 +1,16 @@
-﻿<#---------------------------------Author--------------------------------------
+﻿<#
+---------------------------------Author--------------------------------------
                                 
-                                 Alec McClure
+                               Alec McClure
 
 -------------------------------------------------------------------------------#>
 
-<#-------------------------------Description-----------------------------------
- This script is designed to reset the print spooler on remote machines. 
+<#
+.SYNOPSIS
+ This script is designed to reset the print spooler on remote machines.
+
+.DESCRIPTION
+-------------------------------Description-----------------------------------
  When you run the script it will prompt you to enter a computer name that
  it will check against computer accounts in Active Directory. If it finds
  the specified computer account it will then ask you if you want to reset
@@ -13,7 +18,7 @@
  to print again and hopefully it should work.
 -------------------------------------------------------------------------------#>
 
-<#------------------------------------Credentials-------------------------------
+<#-------------------------------Credentials-------------------------------------
 This Variable gets the Admin credentials to run the script and reset the spooler
 on the remote computer. If running this script to target your local machine, 
 press the Esc key or exit the Credentials Box that pops up. 
@@ -81,11 +86,11 @@ echo ' ' , '--------------------------------------------------------------------
 
 try
     {
-        $spooler = gwmi -ComputerName $user_computerSearch -Class win32_service -Filter "Name = 'spooler'" -Credential $credential
+        $spooler = gwmi -ComputerName $user_computerSearch -Class win32_service -Filter "Name = 'spooler'" -Credential $credential -ErrorAction Stop
     }
-catch
+catch [System.Management.ManagementException]
     {
-        echo 'Print Spooler Could not be found'; $Error[0]
+        echo 'Error: If using this script on a local machine, close out of the Credentials Pop Up box when it appears.', ' '
         exit
     }
 
