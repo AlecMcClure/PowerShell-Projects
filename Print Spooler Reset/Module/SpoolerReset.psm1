@@ -1,20 +1,20 @@
-﻿<#--------------------------------Functions------------------------------------
- This function tests the connection to the specified computer and makes sure
- that the computer account exists in Active Directory. The output of this 
- function is a boolean value of True or False
-#>
-
+﻿#--------------------------------Functions------------------------------------
+#This is the main function to be used as the Module
 function Reset-Spooler 
 {
     param (
-    #-------------------------------Computer Name---------------------------------
-    # This Variable asks for the Computer Name that needs the Print Spooler Reset. 
-
- 
-    [string]$ComputerName
-    #-----------------------------------------------------------------------------        
+        #-------------------------------Computer Name---------------------------------
+        # This Variable asks for the Computer Name that needs the Print Spooler Reset. 
+    
+        [string]$ComputerName
+    
+        #-----------------------------------------------------------------------------        
     )
     
+    <#This function tests the connection to the specified computer and makes sure
+    that the computer account exists in Active Directory. The output of this 
+    function is a boolean value of True or False
+    #>
     function connection_test 
         {
             Test-NetConnection -ComputerName (Get-ADComputer -Identity $ComputerName | select -ExpandProperty Name @{n='computername';e={$_.Name}}) | select -ExpandProperty PingSucceeded
@@ -139,6 +139,5 @@ function Reset-Spooler
             continue
         }
     }
-
-    #-----------------------------------------------------------------------------
 }
+#-----------------------------------------------------------------------------
