@@ -20,20 +20,21 @@ $user_computerSearch = Read-Host "Enter the Computer Name"
 
 #-----------------------------------------------------------------------------
 
-#--------------------------------Functions------------------------------------
-# This function tests the connection to the specified computer and makes sure
-# that the computer account exists in Active Directory. The output of this 
-# function is a boolean value of True or False
-
+<#--------------------------------Functions------------------------------------
+ This function tests the connection to the specified computer and makes sure
+ that the computer account exists in Active Directory. The output of this 
+ function is a boolean value of True or False
+#>
 function connection_test 
     {
         Test-NetConnection -ComputerName (Get-ADComputer -Identity $user_computerSearch | select -ExpandProperty Name @{n='computername';e={$_.Name}}) | select -ExpandProperty PingSucceeded
     }
 
-# This function checks if the Print Spooler on the specified computer is either
-# running or stopped. The output of this function is a String value containing
-# 'Running' or 'Stopped'
-
+<# 
+ This function checks if the Print Spooler on the specified computer is either
+ running or stopped. The output of this function is a String value containing
+ 'Running' or 'Stopped'
+#>
 function is_serviceRunning
     {
         gsv spooler -ComputerName $user_computerSearch  | select -ExpandProperty Status
