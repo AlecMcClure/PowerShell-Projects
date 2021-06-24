@@ -23,6 +23,7 @@ This Variable gets the Admin credentials to run the script and reset the spooler
 on the remote computer. If running this script to target your local machine, 
 press the Esc key or exit the Credentials Box that pops up. 
 #>
+echo ' ','Please enter Administrator Credentials ',' ', 'Or if running on Local Computer close out of Credentials Box', ' '
 
 $credential = Get-Credential -Message 'Enter Administrator Credentials : Domain\Username'
 
@@ -30,7 +31,25 @@ $credential = Get-Credential -Message 'Enter Administrator Credentials : Domain\
 #-------------------------------Computer Name---------------------------------
 # This Variable asks for the Computer Name that needs the Print Spooler Reset.
 
-$user_computerSearch =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single #Read-Host "Enter the Computer Name"
+
+
+$user_Prompt = Read-Host "Enter Computer Name or type Show Window and press enter"
+
+$Computer_Search = $null
+
+if ($user_Prompt -eq 'Show Window')
+    {
+        $user_computerSearch_Window =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
+        $Computer_Search = $user_computerSearch_Window
+
+    }
+else 
+    {
+        $user_computerSearch_Inline = $user_Prompt
+        $Computer_Search = $user_computerSearch_Inline
+    }
+
+#Read-Host "Enter the Computer Name"
 
 #-----------------------------------------------------------------------------
 
@@ -41,7 +60,7 @@ $user_computerSearch =  Get-ADComputer -Filter * | select -ExpandProperty Name |
 #>
 function connection_test 
     {
-        Test-NetConnection -ComputerName (Get-ADComputer -Identity $user_computerSearch | select -ExpandProperty Name @{n='computername';e={$_.Name}}) | select -ExpandProperty PingSucceeded
+        Test-NetConnection -ComputerName (Get-ADComputer -Identity $Computer_Search | select -ExpandProperty Name @{n='computername';e={$_.Name}}) | select -ExpandProperty PingSucceeded
     }
 
 <# 
@@ -51,7 +70,7 @@ function connection_test
 #>
 function is_serviceRunning
     {
-        gsv spooler -ComputerName $user_computerSearch  | select -ExpandProperty Status
+        gsv spooler -ComputerName $Computer_Search | select -ExpandProperty Status
     }
 #-----------------------------------------------------------------------------
 
@@ -86,11 +105,11 @@ echo ' ' , '--------------------------------------------------------------------
 
 try
     {
-        $spooler = gwmi -ComputerName $user_computerSearch -Class win32_service -Filter "Name = 'spooler'" -Credential $credential -ErrorAction Stop
+        $spooler = gwmi -ComputerName $Computer_Search -Class win32_service -Filter "Name = 'spooler'" -Credential $credential -ErrorAction Stop
     }
 catch [System.Management.ManagementException]
     {
-        echo 'Error: If using this script on a local machine, close out of the Credentials Pop Up box when it appears.', ' '
+        echo 'AuthenticationError: If using this script on a local machine, close out of the Credentials Pop Up box when it appears.', ' '
         exit
     }
 
@@ -134,14 +153,14 @@ while ($while_var = 1)
     {
         if ($check2 -eq 'running')
         {
-            echo ('Print Spooler Restarted Successfully', ' ')
+            echo ('Print Spooler Restarted Successfully!', ' ')
             exit
         }
     }
 
     if ($user_response -eq 'n')
     {
-        echo ' '
+        echo ' ','Exiting...',' '
         exit
     }
 
