@@ -15,7 +15,8 @@
 
 <#------------------------------------Credentials-------------------------------
 This Variable gets the Admin credentials to run the script and reset the spooler
-on the remote computer 
+on the remote computer. If running this script to target your local machine, 
+press the Esc key or exit the Credentials Box that pops up. 
 #>
 
 $credential = Get-Credential -Message 'Enter Administrator Credentials : Domain\Username'
@@ -24,7 +25,7 @@ $credential = Get-Credential -Message 'Enter Administrator Credentials : Domain\
 #-------------------------------Computer Name---------------------------------
 # This Variable asks for the Computer Name that needs the Print Spooler Reset.
 
-$user_computerSearch = Read-Host "Enter the Computer Name"
+$user_computerSearch =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single #Read-Host "Enter the Computer Name"
 
 #-----------------------------------------------------------------------------
 
@@ -135,6 +136,7 @@ while ($while_var = 1)
 
     if ($user_response -eq 'n')
     {
+        echo ' '
         exit
     }
 
