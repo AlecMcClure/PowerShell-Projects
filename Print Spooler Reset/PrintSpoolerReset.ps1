@@ -13,6 +13,14 @@
  to print again and hopefully it should work.
 -------------------------------------------------------------------------------#>
 
+<#------------------------------------Credentials-------------------------------
+This Variable gets the Admin credentials to run the script and reset the spooler
+on the remote computer 
+#>
+
+$credential = Get-Credential -Message 'Enter Administrator Credentials : Domain\Username'
+
+
 #-------------------------------Computer Name---------------------------------
 # This Variable asks for the Computer Name that needs the Print Spooler Reset.
 
@@ -72,7 +80,7 @@ echo ' ' , '--------------------------------------------------------------------
 
 try
     {
-        $spooler = gwmi -ComputerName $user_computerSearch -Class win32_service -Filter "Name = 'spooler'"
+        $spooler = gwmi -ComputerName $user_computerSearch -Class win32_service -Filter "Name = 'spooler'" -Credential $credential
     }
 catch
     {
@@ -120,7 +128,7 @@ while ($while_var = 1)
     {
         if ($check2 -eq 'running')
         {
-            echo ('Print Spooler Restarted Successfully')
+            echo ('Print Spooler Restarted Successfully', ' ')
             exit
         }
     }
