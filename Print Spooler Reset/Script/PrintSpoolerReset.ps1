@@ -47,7 +47,7 @@ function clarification
     $decision = $Host.UI.PromptForChoice($title, $question, $choices, 0)
     if ($decision -eq 0) 
     {
-        $global:Computer_Search =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
+        $global:Computer_Search =  Get-ADComputer -Filter * | select -Property Name,DNSHostName,Enabled,ObjectClass | sort -Property Name | Out-GridView -Title 'Select A Computer' -OutputMode Single | select -ExpandProperty Name 
     }   
     else 
     {
@@ -57,7 +57,7 @@ function clarification
 
 if ($user_Prompt -eq 'Show Window')
     {
-        $user_computerSearch_Window =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
+        $user_computerSearch_Window =  Get-ADComputer -Filter * | select -Property Name,DNSHostName,Enabled,ObjectClass | sort -Property Name | Out-GridView -Title 'Select A Computer' -OutputMode Single | select -ExpandProperty Name 
         $global:Computer_Search = $user_computerSearch_Window
     }
 
