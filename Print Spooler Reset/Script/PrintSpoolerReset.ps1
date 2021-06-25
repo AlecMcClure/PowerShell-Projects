@@ -31,25 +31,54 @@ $credential = Get-Credential -Message 'Enter Administrator Credentials : Domain\
 #-------------------------------Computer Name---------------------------------
 # This Variable asks for the Computer Name that needs the Print Spooler Reset.
 
-
-
 $user_Prompt = Read-Host "Enter Computer Name or type Show Window and press enter"
 
 $Computer_Search = $null
 
-if ($user_Prompt -eq 'Show Window')
+function ShowWindow 
     {
         $user_computerSearch_Window =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
         $Computer_Search = $user_computerSearch_Window
-
     }
+
+function InlineSearch {
+    $user_computerSearch_Inline = $user_Prompt
+    $Computer_Search = $user_computerSearch_Inline
+}
+
+function clarification
+{
+    param([string]$question) 
+
+ 
+    $title    = ''
+    $choices  = '&Yes', '&No'
+    
+    $decision = $Host.UI.PromptForChoice($title, $question, $choices, 0)
+    if ($decision -eq 0) 
+    {
+        ShowWindow
+    }   
+    else 
+    {
+        InlineSearch
+    }
+}
+
+if ($user_Prompt -eq 'Show Window')
+    {
+        ShowWindow
+    }
+
+elseif ($user_Prompt -like 's* w*') 
+{
+    clarification -question 'Did you mean Show Window?'
+}
+
 else 
     {
-        $user_computerSearch_Inline = $user_Prompt
-        $Computer_Search = $user_computerSearch_Inline
+        InlineSearch
     }
-
-#Read-Host "Enter the Computer Name"
 
 #-----------------------------------------------------------------------------
 
@@ -58,6 +87,8 @@ else
  that the computer account exists in Active Directory. The output of this 
  function is a boolean value of True or False
 #>
+
+
 function connection_test 
     {
         Test-NetConnection -ComputerName (Get-ADComputer -Identity $Computer_Search | select -ExpandProperty Name @{n='computername';e={$_.Name}}) | select -ExpandProperty PingSucceeded
