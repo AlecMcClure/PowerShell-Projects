@@ -33,7 +33,7 @@ $credential = Get-Credential -Message 'Enter Administrator Credentials : Domain\
 
 $user_Prompt = Read-Host "Enter Computer Name or type Show Window and press enter"
 
-$Computer_Search = $null
+$global:Computer_Search = ' '
 
 
 function clarification
@@ -47,20 +47,18 @@ function clarification
     $decision = $Host.UI.PromptForChoice($title, $question, $choices, 0)
     if ($decision -eq 0) 
     {
-        $user_computerSearch_Window =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
-        $Computer_Search = $user_computerSearch_Window
+        $global:Computer_Search =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
     }   
     else 
     {
-        $user_computerSearch_Inline = $user_Prompt
-        $Computer_Search = $user_computerSearch_Inline
+        $global:Computer_Search = $user_Prompt
     }
 }
 
 if ($user_Prompt -eq 'Show Window')
     {
         $user_computerSearch_Window =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
-        $Computer_Search = $user_computerSearch_Window
+        $global:Computer_Search = $user_computerSearch_Window
     }
 
 elseif ($user_Prompt -like 's* w*') 
@@ -71,7 +69,7 @@ elseif ($user_Prompt -like 's* w*')
 else 
     {
         $user_computerSearch_Inline = $user_Prompt
-        $Computer_Search = $user_computerSearch_Inline
+        $global:Computer_Search = $user_computerSearch_Inline
     }
 
 #-----------------------------------------------------------------------------
@@ -85,7 +83,7 @@ else
 
 function connection_test 
     {
-        Test-NetConnection -ComputerName (Get-ADComputer -Identity $Computer_Search | select -ExpandProperty Name @{n='computername';e={$_.Name}}) | select -ExpandProperty PingSucceeded
+        Test-NetConnection -ComputerName (Get-ADComputer -Identity $global:Computer_Search | select -ExpandProperty Name @{n='computername';e={$_.Name}}) | select -ExpandProperty PingSucceeded
     }
 
 <# 
@@ -95,7 +93,7 @@ function connection_test
 #>
 function is_serviceRunning
     {
-        gsv spooler -ComputerName $Computer_Search | select -ExpandProperty Status
+        gsv spooler -ComputerName $global:Computer_Search | select -ExpandProperty Status
     }
 #-----------------------------------------------------------------------------
 
@@ -106,7 +104,7 @@ function is_serviceRunning
 
 echo ' ' , '------------------------------------Testing Connection------------------------------------------' , ' '
 
-$connection_Status = try {connection_test} catch {echo 'Computer Not Found. Exiting...', ' ', $Error[0] ; exit}
+$connection_Status = try {connection_test} catch {echo 'Computer Not Found. Exiting...', ' ', $Error[0] ; Pause; break}
 
 if ($connection_Status -eq $true)
 {
@@ -116,7 +114,8 @@ if ($connection_Status -eq $true)
 if ($connection_Status -eq $false)
 {
     echo ' ' , 'Could not establish connection. Exiting...' , ' ' ,$Error[0]
-    exit
+    Pause
+    break
 }
 
 echo ' ' , '------------------------------------------------------------------------------------------------' ,  ' '
@@ -130,12 +129,13 @@ echo ' ' , '--------------------------------------------------------------------
 
 try
     {
-        $spooler = gwmi -ComputerName $Computer_Search -Class win32_service -Filter "Name = 'spooler'" -Credential $credential -ErrorAction Stop
+        $spooler = gwmi -ComputerName $global:Computer_Search -Class win32_service -Filter "Name = 'spooler'" -Credential $credential -ErrorAction Stop
     }
 catch [System.Management.ManagementException]
     {
         echo 'AuthenticationError: If using this script on a local machine, close out of the Credentials Pop Up box when it appears.', ' '
-        exit
+        Pause
+        break
     }
 
 <#-------------------------------Reset Spooler----------------------------------
@@ -162,6 +162,7 @@ while ($while_var = 1)
         if ($check1 -eq 'running')
         {
              echo 'Print Spooler could not be stopped'
+             Pause
              break
         }
 
@@ -179,20 +180,23 @@ while ($while_var = 1)
         if ($check2 -eq 'running')
         {
             echo ('Print Spooler Restarted Successfully!', ' ')
-            exit
+            Read-Host 'Press any key to Exit'
+            echo ' ', 'Exiting...', ' '
+            break
         }
     }
 
     if ($user_response -eq 'n')
     {
         echo ' ','Exiting...',' '
-        exit
+        Pause
+        break
     }
 
 
     if ($user_response -ne 'y' -or 'n')
     {
-        echo 'Please enter y or n.'
+        echo ' ','Please enter y or n.', ' '
         continue
     }
 }
