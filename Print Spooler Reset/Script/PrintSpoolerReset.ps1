@@ -35,16 +35,6 @@ $user_Prompt = Read-Host "Enter Computer Name or type Show Window and press ente
 
 $Computer_Search = $null
 
-function ShowWindow 
-    {
-        $user_computerSearch_Window =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
-        $Computer_Search = $user_computerSearch_Window
-    }
-
-function InlineSearch {
-    $user_computerSearch_Inline = $user_Prompt
-    $Computer_Search = $user_computerSearch_Inline
-}
 
 function clarification
 {
@@ -57,17 +47,20 @@ function clarification
     $decision = $Host.UI.PromptForChoice($title, $question, $choices, 0)
     if ($decision -eq 0) 
     {
-        ShowWindow
+        $user_computerSearch_Window =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
+        $Computer_Search = $user_computerSearch_Window
     }   
     else 
     {
-        InlineSearch
+        $user_computerSearch_Inline = $user_Prompt
+        $Computer_Search = $user_computerSearch_Inline
     }
 }
 
 if ($user_Prompt -eq 'Show Window')
     {
-        ShowWindow
+        $user_computerSearch_Window =  Get-ADComputer -Filter * | select -ExpandProperty Name | Out-GridView -Title 'Select a Computer' -OutputMode Single 
+        $Computer_Search = $user_computerSearch_Window
     }
 
 elseif ($user_Prompt -like 's* w*') 
@@ -77,7 +70,8 @@ elseif ($user_Prompt -like 's* w*')
 
 else 
     {
-        InlineSearch
+        $user_computerSearch_Inline = $user_Prompt
+        $Computer_Search = $user_computerSearch_Inline
     }
 
 #-----------------------------------------------------------------------------
