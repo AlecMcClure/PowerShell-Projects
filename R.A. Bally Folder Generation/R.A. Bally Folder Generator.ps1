@@ -1,12 +1,11 @@
 #<You must use install-module accesscmdlets in an administrator Powershell to run this script >#
 
-$datasource = "C:\Users\alecmcclure.adu\Documents\Programming\Database\ClientDatabase1.accdb"
+$datasource = "F:\RedDoor\For Alec\Programming\Database\ClientDatabase1.accdb"
 
-$Clients_FilePath = "C:\Users\alecmcclure.adu\Documents\Programming\Clients\"
+$Clients_FilePath = "F:\RedDoor\For Alec\Programming\Clients\"
 
 $access = Connect-Access -DataSource "$datasource"
 
-[System.Collections.ArrayList]$clients = Select-Access -Connection $access -Table "ClientMasterFile"
 [System.Collections.ArrayList]$Empty_Path = Invoke-Access -Connection $access -Query "SELECT * FROM ClientMasterFile WHERE (ClientFolderPath Is Null);"
 
 function Sync-Status 
@@ -75,7 +74,13 @@ foreach ($clientp in $Empty_Path)
     }    
 }
 
+Disconnect-Access -Connection $access
+
 cls; echo "Waiting for Database to Sync Changes.";Start-Sleep -seconds 60
+
+$access_Sync = Connect-Access -DataSource "$datasource"
+
+[System.Collections.ArrayList]$clients = Select-Access -Connection $access_Sync -Table "ClientMasterFile"
 
 cls; echo ' ',"Creating Company Folders...",' '
 
@@ -86,24 +91,21 @@ foreach ($clientd in $clients)
         if ($clientd.Companies -ne 'n/a')
         {
             $client_companies_NoSpouse = $clientd.Companies -split "\,"
-            #$Client_FP = $client.ClientFolderPath
 
             foreach ($company in $client_companies_NoSpouse) 
             {
                 $Client_Name = $clientd.FirstName + $clientd.LastName
-                #echo ' ',"Found $company In Client File With No Spouse, Creating Folder called $company at $Client_FP\$company",' '
                 $client_name_NoSP = $clientd.FirstName + " " + $clientd.LastName
+                $Client_IDD = $clientd | select -ExpandProperty EntryNumber
                 try 
                 {
-                    New-Item -Path $clientd.ClientFolderPath -Name "$company" -ItemType Directory 
-                    echo "$company Folder Created for $client_name_NoSP"  
+                    New-Item -Path $clientd.ClientFolderPath -Name "$company" -ItemType Directory  
                 }
                 catch 
                 {
                     echo "Sync Status of $client_Name_NoSP Failed. Resyncing..."
                     Start-Sleep -seconds 5
-                    New-Item -Path $clientd.ClientFolderPath -Name "$company" -ItemType Directory 
-                    echo "$company Folder Created for $client_name_NoSP"  
+                    Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_Folder_Path_NoSpouse -Where "EntryNumber = $Client_IDD" 
                 }
             }  
         }
@@ -122,18 +124,16 @@ foreach ($clientf in $clients)
 
             foreach ($company in $client_companies_Spouse) 
             {
-                #echo ' ',"Found $company In Client File With No Spouse, Creating Folder called $company at $Client_FP\$company",' '
                 $Client_Name = $clientf.FirstName + $clientf.LastName
                 try 
                 {
-                    New-Item -ErrorAction Ignore -Path $clientf.ClientFolderPath -Name "$company" -ItemType Directory
-                    echo "$company Folder Created for $client_name"  
+                    New-Item -Path $clientf.ClientFolderPath -Name "$company" -ItemType Directory 
                 }
                 catch 
                 {
                     echo "Sync Status of $client_Name Failed. Resyncing..."
-                    Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_FP -Where "EntryNumber = $Client_IDF"
                     Start-Sleep -seconds 5
+                    Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_FP -Where "EntryNumber = $Client_IDF" 
                 } 
             }  
         }
@@ -142,4 +142,4 @@ foreach ($clientf in $clients)
 
 echo ' ', "Database Sync Complete!", ' '
 
-Disconnect-Access -Connection $access
+Disconnect-Access -Connection $access_Sync
