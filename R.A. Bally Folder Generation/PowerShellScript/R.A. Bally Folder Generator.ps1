@@ -1,27 +1,12 @@
 #<You must use install-module accesscmdlets in an administrator Powershell to run this script >#
 
-$datasource = "F:\RedDoor\For Alec\Programming\Database\ClientDatabase1.accdb"
+$datasource = "C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\SampleDatabase\SampleDatabase.accdb"
 
-$Clients_FilePath = "F:\RedDoor\For Alec\Programming\Clients\"
+$Clients_FilePath = "C:\Users\alecmcclure.ADU\Documents\Programming\Clients\"
 
 $access = Connect-Access -DataSource "$datasource"
 
 [System.Collections.ArrayList]$Empty_Path = Invoke-Access -Connection $access -Query "SELECT * FROM ClientMasterFile WHERE (ClientFolderPath Is Null);"
-
-function Sync-Status 
-{
-    $Check_Clients = Invoke-Access -Connection $access -Query "SELECT * FROM ClientMasterFile WHERE (ClientFolderPath Is Null);"
-
-    foreach ($client in $Check_clients)
-    {
-        if ($client.ClientFolderPath -notlike '*')
-        {
-            echo "Client Path not synced. Syncing..."
-
-            Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_Folder_Path_Spouse -Where "EntryNumber = $Client_ID"
-        }
-    }
-}
 
 function Start-Sleep($seconds) 
 {
@@ -56,84 +41,84 @@ foreach ($client in $Empty_Path)
     }
 }
 
-foreach ($clientp in $Empty_Path) 
+foreach ($client in $Empty_Path) 
 {
-    if ($clientp.Spouse -eq 'n/a')
+    if ($client.Spouse -eq 'n/a')
     {
-        $Client_IDP = $clientp | select -ExpandProperty EntryNumber
+        $Client_ID = $client | select -ExpandProperty EntryNumber
 
-        $FolderName_NoSpouse = $clientp.LastName + ', ' + $clientp.FirstName
+        $FolderName_NoSpouse = $client.LastName + ', ' + $client.FirstName
 
         New-Item -ErrorAction Ignore -Path ($Clients_FilePath + $FolderName_NoSpouse) -ItemType Directory
 
         $Client_Folder_Path_NoSpouse = $Clients_FilePath + $FolderName_NoSpouse
 
-        $clientp.ClientFolderPath = $Client_Folder_Path_NoSpouse
+        $client.ClientFolderPath = $Client_Folder_Path_NoSpouse
 
-        Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_Folder_Path_NoSpouse -Where "EntryNumber = $Client_IDP"
+        Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_Folder_Path_NoSpouse -Where "EntryNumber = $Client_ID"
     }    
 }
 
 Disconnect-Access -Connection $access
 
-cls; echo "Waiting for Database to Sync Changes.";Start-Sleep -seconds 60
+echo "Waiting for Database to Sync Changes.";Start-Sleep -seconds 30
 
 $access_Sync = Connect-Access -DataSource "$datasource"
 
 [System.Collections.ArrayList]$clients = Select-Access -Connection $access_Sync -Table "ClientMasterFile"
 
-cls; echo ' ',"Creating Company Folders...",' '
+echo ' ',"Creating Company Folders...",' '
 
-foreach ($clientd in $clients) 
+foreach ($client in $clients) 
 {
-    if ($clientd.Spouse -eq 'n/a')
+    if ($client.Spouse -eq 'n/a')
     {
-        if ($clientd.Companies -ne 'n/a')
+        if ($client.Companies -ne 'n/a')
         {
-            $client_companies_NoSpouse = $clientd.Companies -split "\,"
+            $client_companies_NoSpouse = $client.Companies -split "\,"
 
             foreach ($company in $client_companies_NoSpouse) 
             {
-                $Client_Name = $clientd.FirstName + $clientd.LastName
-                $client_name_NoSP = $clientd.FirstName + " " + $clientd.LastName
-                $Client_IDD = $clientd | select -ExpandProperty EntryNumber
+                $Client_Name = $client.FirstName + $client.LastName
+                $client_name_NoSP = $client.FirstName + " " + $client.LastName
+                $Client_ID = $client | select -ExpandProperty EntryNumber
                 try 
                 {
-                    New-Item -Path $clientd.ClientFolderPath -Name "$company" -ItemType Directory  
+                    New-Item -ErrorAction Ignore -Path $client.ClientFolderPath -Name "$company" -ItemType Directory  
                 }
                 catch 
                 {
                     echo "Sync Status of $client_Name_NoSP Failed. Resyncing..."
                     Start-Sleep -seconds 5
-                    Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_Folder_Path_NoSpouse -Where "EntryNumber = $Client_IDD" 
+                    Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_Folder_Path_NoSpouse -Where "EntryNumber = $Client_ID" 
                 }
             }  
         }
     }
 }
 
-foreach ($clientf in $clients) 
+foreach ($client in $clients) 
 {
-    if ($clientf.Spouse -ne 'n/a')
+    if ($client.Spouse -ne 'n/a')
     {
-        if ($clientf.Companies -ne 'n/a')
+        if ($client.Companies -ne 'n/a')
         {
-            $client_companies_Spouse = $clientf.Companies -split "\,"
-            $Client_FP = $clientf.ClientFolderPath
-            $Client_IDF = $clientf | select -ExpandProperty EntryNumber
+            $client_companies_Spouse = $client.Companies -split "\,"
+            $Client_FP = $client.ClientFolderPath
+            $Client_ID = $client | select -ExpandProperty EntryNumber
 
             foreach ($company in $client_companies_Spouse) 
             {
-                $Client_Name = $clientf.FirstName + $clientf.LastName
+                $Client_Name = $client.FirstName + $client.LastName
                 try 
                 {
-                    New-Item -Path $clientf.ClientFolderPath -Name "$company" -ItemType Directory 
+                    New-Item -ErrorAction Ignore -Path $client.ClientFolderPath -Name "$company" -ItemType Directory 
                 }
                 catch 
                 {
                     echo "Sync Status of $client_Name Failed. Resyncing..."
                     Start-Sleep -seconds 5
-                    Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_FP -Where "EntryNumber = $Client_IDF" 
+                    Update-Access -Connection $access -Table "ClientMasterFile" -Columns "ClientFolderPath" -Values $Client_FP -Where "EntryNumber = $Client_ID" 
                 } 
             }  
         }
