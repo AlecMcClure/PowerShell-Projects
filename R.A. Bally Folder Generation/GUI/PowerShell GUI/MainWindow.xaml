@@ -8,13 +8,14 @@
         Title="MainWindow" Height="429" Width="909" Background="#FF252526">
     <Grid x:Name="Grid_Grid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="99*"/>
-            <RowDefinition Height="85*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="169*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="80"/>
+            <RowDefinition Height="Auto" MinHeight="80"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="FirstName_Text" HorizontalAlignment="Left" Margin="10,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Height="18"/>
         <Label x:Name="FirstName_Label" Content="First Name" HorizontalAlignment="Left" Margin="31,41,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="67"/>
@@ -30,7 +31,7 @@
         <TextBox x:Name="DateOfBirth_Text" HorizontalAlignment="Left" Margin="525,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="18"/>
         <TextBox x:Name="Age_Text" HorizontalAlignment="Left" Margin="630,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Height="18"/>
         <TextBox x:Name="Card_Text" HorizontalAlignment="Left" Margin="685,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="25" Height="18"/>
-        <TextBox x:Name="StreetAddress_Text" HorizontalAlignment="Left" Margin="10,34,0,33" Grid.Row="1" TextWrapping="Wrap" Width="270"/>
+        <TextBox x:Name="StreetAddress_Text" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Width="270" VerticalAlignment="Center" Height="18"/>
         <TextBox x:Name="City_Text" HorizontalAlignment="Left" Margin="295,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18"/>
         <TextBox x:Name="State_Text" HorizontalAlignment="Left" Margin="435,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="15" Height="18"/>
         <TextBox x:Name="ZipCode_Text" HorizontalAlignment="Left" Margin="480,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="43" Height="18"/>
@@ -38,8 +39,11 @@
         <Label x:Name="City_Label" Content="City" HorizontalAlignment="Left" Margin="340,4,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="30"/>
         <Label x:Name="State_Label" Content="State" HorizontalAlignment="Left" Margin="424,4,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="37"/>
         <Label x:Name="ZipCode_Label" Content="Zip Code" HorizontalAlignment="Left" Margin="472,4,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="58"/>
-        <TextBox x:Name="Companies_Text" HorizontalAlignment="Left" Margin="10,31,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="513" Height="18"/>
-        <Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Left" Margin="212,4,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="109"/>
+        <TextBox x:Name="Companies_Text" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="512" Height="18" Margin="10,0,0,0"/>
+        <Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110" Margin="212,0,0,0"/>
+        <TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Left" Grid.Row="3" Text="&#xD;&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" Height="18" Margin="10,30,0,0"/>
+        <Label x:Name="ClientFolderPath_Label" Content="Client File Path" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="89" Margin="188,4,0,0"/>
+        <Button x:Name="OpenClientFolder_Button" Content="Open File" HorizontalAlignment="Left" Margin="473,29,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" Width="57"/>
 
     </Grid>
 </Window>
