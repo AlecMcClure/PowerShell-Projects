@@ -94,10 +94,37 @@ $FirstName_Text = $WPFFirstName_Text.Text
 
 function Search-Client ([string]$FirstName)
 {
-    $WPFLastName_Text.Text = Invoke-Access -Connection $access -Query "SELECT ClientMasterFile.[LastName] FROM ClientMasterFile WHERE ([FirstName]= `'$FirstName`');" | select -ExpandProperty LastName
+    [array]$client = Invoke-Access -Connection $access -Query "SELECT * FROM ClientMasterFile WHERE ([FirstName]= `'$FirstName`');" | select -Property FirstName,Middle,LastName,Spouse,Age,Card,StreetAddress1,City,State,Zipcode,Companies,ClientFolderPath
+    $WPFFirstName_Text.Text = $client.FirstName
+    $WPFLastName_Text.Text = $client.LastName
+    $WPFMiddle_Text.Text = $client.Middle
+    $WPFSpouse_Text.Text = $client.Spouse
+    $WPFAge_Text.Text = $client.Age
+    $WPFCard_Text.Text = $client.Card
+    $WPFStreetAddress_Text.Text = $client.StreetAddress1
+    $WPFCity_Text.Text = $client.City
+    $WPFState_Text.Text = $client.State
+    $WPFZipCode_Text.Text = $client.Zipcode
+    $WPFCompanies_Text.Text = $client.Companies
+    $WPFClientFolderPath_Text.Text = $client.ClientFolderPath
+
+    #$ClientFolderPath = $WPFClientFolderPath_Text.Text
 }
 
-$WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.Text})                                                                
+function Open-ClientFolder 
+{
+    param 
+    (
+        $Folder_Path
+    )
+
+    Start $Folder_Path
+        
+}
+
+$WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.Text})
+
+#$WPFOpenClientFolder_Button.Add_Click((Invoke-Expression -Command Open-ClientFolder($ClientFolderPath)))
 
 
 
