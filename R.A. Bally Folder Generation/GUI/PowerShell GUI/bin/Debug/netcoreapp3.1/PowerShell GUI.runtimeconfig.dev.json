@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\alecmcclure.ADU\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\alecmcclure.ADU\\.nuget\\packages"
+    ]
+  }
+}
