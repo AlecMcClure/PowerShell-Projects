@@ -36,3 +36,7 @@ C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder 
 C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.dll
 C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.pdb
 C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.genruntimeconfig.cache
+C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\Page1.g.cs
+C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\Window1.g.cs
+C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\Page1.baml
+C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\Window1.baml

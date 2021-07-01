@@ -1,9 +1,13 @@
 [void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
 $inputXML = @'
-<Window 
+<Window x:Class="PowerShell_GUI.Window1"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="PowerShell GUI" Height="429" Width="909" Background="#FF252526">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PowerShell_GUI"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800" Background="#FF252526">
     <Grid x:Name="Grid_Grid" HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -45,25 +49,24 @@ $inputXML = @'
         <Button x:Name="OpenClientFolder_Button" Content="Open File" HorizontalAlignment="Left" Margin="621,28,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" Width="57"/>
         <Button x:Name="SearchClient_Button" Content="Search Client" HorizontalAlignment="Left" Margin="220,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="20" Width="73"/>
         <Button x:Name="NewClient_Button" Content="New Client" HorizontalAlignment="Left" Margin="401,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="20" Width="73"/>
-
     </Grid>
 </Window>
+
 '@
+
 $inputXML = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace '^<Win.*', '<Window'
 [void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
 [xml]$XAML = $inputXML
 
 #Read XAML
- 
-$reader=(New-Object System.Xml.XmlNodeReader $xaml)
-try{
-    $Form=[Windows.Markup.XamlReader]::Load( $reader )
-}
-catch{
-    Write-Warning "Unable to parse XML, with error: $($Error[0])`n Ensure that there are NO SelectionChanged or TextChanged properties in your textboxes (PowerShell cannot process them)"
-    throw
-}
- 
+$reader=(New-Object System.Xml.XmlNodeReader $XAML)
+    try{
+        $Form=[Windows.Markup.XamlReader]::Load( $reader )
+    }
+    catch{
+        Write-Warning "Unable to parse XML, with error: $($Error[0])`n Ensure that there are NO SelectionChanged or TextChanged properties in your textboxes (PowerShell cannot process them)"
+        throw
+    }
 #===========================================================================
 # Load XAML Objects In PowerShell
 #===========================================================================
@@ -108,23 +111,45 @@ function Search-Client ([string]$FirstName)
     $WPFCompanies_Text.Text = $client.Companies
     $WPFClientFolderPath_Text.Text = $client.ClientFolderPath
 
-    #$ClientFolderPath = $WPFClientFolderPath_Text.Text
+    $ClientFolderPath = $WPFClientFolderPath_Text.Text    
 }
 
-function Open-ClientFolder 
+#$assembly = @([System.Diagnostics],[System.IO])
+
+$test_path = '@`"C:\Users`"'
+
+$Some_Code = 
+@'
+using System.Diagnostics;
+using System.IO;
+
+
+public class program 
 {
-    param 
-    (
-        $Folder_Path
-    )
-
-    Start $Folder_Path
+    public void main()
+    {
+        openFolder(@"C:\Users\");
+    }
         
+    private void openFolder(string filepath)
+    {
+        ProcessStartInfo startInfo = new ProcessStartInfo
+        {
+            Arguments = filepath,
+            FileName = "explorer.exe"
+        };
+
+        Process.Start(startInfo);
+    }
 }
 
+'@
+
+Add-Type -TypeDefinition $Some_Code -Language CSharp
+Invoke-Expression "[program]::main()"
 $WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.Text})
 
-#$WPFOpenClientFolder_Button.Add_Click((Invoke-Expression -Command Open-ClientFolder($ClientFolderPath)))
+
 
 
 
@@ -134,6 +159,4 @@ $WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.T
 
 write-host "To show the form, run the following" -ForegroundColor Cyan
 
-#echo $WPFLastName_Text.Text
-
-$Form.ShowDialog() | out-null
+#$Form.ShowDialog() | out-null
