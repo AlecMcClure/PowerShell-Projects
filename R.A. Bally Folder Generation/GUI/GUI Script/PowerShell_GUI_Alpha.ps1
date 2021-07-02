@@ -89,7 +89,7 @@ echo "----------------------------------------------------------------------"," 
 #===========================================================================
 # Use this space to add code to the various form elements in your GUI
 #===========================================================================
-$datasource = "C:\Users\alecb\Documents\Programming\Database\ClientDatabase1.accdb"
+$datasource = "C:\Users\alecmcclure.adu\Documents\Programming\Database\ClientDatabase1.accdb"
 
 $access = Connect-Access -DataSource $datasource
 
@@ -99,7 +99,7 @@ $FirstName_Text = $WPFFirstName_Text.Text
 
 function Search-Client ([string]$FirstName)
 {
-    [array]$client = Invoke-Access -Connection $access -Query "SELECT * FROM ClientMasterFile WHERE ([FirstName]= `'$FirstName`');" | select -Property FirstName,Middle,LastName,Spouse,Age,Card,StreetAddress1,City,State,Zipcode,Companies,ClientFolderPath
+    [array]$client = Invoke-Access -Connection $access -Query "SELECT * FROM ClientMasterFile WHERE ([FirstName] = `'$FirstName`');" | select -Property FirstName,Middle,LastName,Spouse,Age,Card,StreetAddress1,City,State,Zipcode,Companies,ClientFolderPath
     $WPFFirstName_Text.Text = $client.FirstName
     $WPFLastName_Text.Text = $client.LastName
     $WPFMiddle_Text.Text = $client.Middle
@@ -111,17 +111,27 @@ function Search-Client ([string]$FirstName)
     $WPFState_Text.Text = $client.State
     $WPFZipCode_Text.Text = $client.Zipcode
     $WPFCompanies_Text.Text = $client.Companies
-    $WPFClientFolderPath_Text.Text = $client.ClientFolderPath_Text    
+    $WPFClientFolderPath_Text.Text = $client.ClientFolderPath_Text   
 }
 
-$ClientFolderPath = $WPFClientFolderPath_Text.Text
+function Set-work($please)
+{
+    while ($WPFClientFolderPath_Text.Text -contains $null)
+    {
+        continue
+    }
 
-function Open-Folder
+    Start-Process ($please)
+}
+
+function Open-Folder($plz)
 {  
-    [HelloWorld.Program]::openFolder([regex]"$ClientFolderPath")
+    $default = [regex]::Escape([HelloWorld.Program]::openFolder("C:\Users\alecmcclure.ADU\Documents\Programming\Clients"))
+    $default;
+    [regex]::Escape([HelloWorld.Program]::openFolder("$plz"))
 }    
 
-<#
+
 $code = @"
 using System.Diagnostics;
 using System.IO;
@@ -131,25 +141,21 @@ namespace HelloWorld
     public class Program
     {
        
-        public static void openFolder(string filepath)
+        public static void openFolder(string folderpath)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                Arguments = filepath,
-                FileName = "explorer.exe"
-            };
-
-            Process.Start(startInfo);
+            Process.Start("explorer.exe"+ folderpath);
         }
     }
 }
 "@
-#>
-#Add-Type -TypeDefinition $code -Language CSharp
+
+Add-Type -TypeDefinition $code -Language CSharp
 
 $WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.Text})
 
-$WPFOpenClientFolder_Button.Add_Click({Open-Folder})
+$output = $WPFCompanies_Text | Select -Property Text
+
+$WPFOpenClientFolder_Button.Add_Click({Write-Host "The Output is: $output  Can you see it"})
 
 #===========================================================================
 # Shows the form
@@ -157,4 +163,4 @@ $WPFOpenClientFolder_Button.Add_Click({Open-Folder})
 
 #write-host "To show the form, run the following" -ForegroundColor Cyan
 
-$Form.ShowDialog() | out-null
+$Form.ShowDialog() | Out-Null
