@@ -1,6 +1,6 @@
 [void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
 $inputXML = @'
-<Window x:Class="PowerShell_GUI.Window1"
+<Window x:Class="PowerShell_GUI.Window"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -44,14 +44,13 @@ $inputXML = @'
         <Label x:Name="ZipCode_Label" Content="Zip Code" HorizontalAlignment="Left" Margin="649,4,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="58"/>
         <TextBox x:Name="Companies_Text" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="512" Height="18"/>
         <Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110"/>
-        <TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Center" Grid.Row="3" Text="&#xD;&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" Height="18" Margin="0,30,0,0"/>
+        <TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Center" Grid.Row="3" Text="&#xD;&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="512" Height="18" Margin="0,30,0,0"/>
         <Label x:Name="ClientFolderPath_Label" Content="Client File Path" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="89" Margin="0,4,0,0"/>
-        <Button x:Name="OpenClientFolder_Button" Content="Open File" HorizontalAlignment="Left" Margin="621,28,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" Width="57"/>
-        <Button x:Name="SearchClient_Button" Content="Search Client" HorizontalAlignment="Left" Margin="220,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="20" Width="73"/>
-        <Button x:Name="NewClient_Button" Content="New Client" HorizontalAlignment="Left" Margin="401,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="20" Width="73"/>
+        <Button x:Name="OpenClientFolder_Button" Content="Open File" HorizontalAlignment="Left" Margin="640,28,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" Width="57"/>
+        <Button x:Name="SearchClient_Button" Content="Search Client" HorizontalAlignment="Left" Margin="227,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="20" Width="73"/>
+        <Button x:Name="NewClient_Button" Content="New Client" HorizontalAlignment="Left" Margin="418,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="20" Width="73"/>
     </Grid>
 </Window>
-
 '@
 
 $inputXML = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace '^<Win.*', '<Window'
@@ -109,8 +108,7 @@ function Search-Client ([string]$FirstName)
     $WPFState_Text.Text = $client.State
     $WPFZipCode_Text.Text = $client.Zipcode
     $WPFCompanies_Text.Text = $client.Companies
-    $WPFClientFolderPath_Text.Text = $client.ClientFolderPath
-    $script:var = $WPFClientFolderPath_Text.Text 
+    $script:WPFClientFolderPath_Text.Text = $client.ClientFolderPath
 }
 
 function Set-work($please)
@@ -125,7 +123,7 @@ function Set-work($please)
 
 function Open-Folder
 {  
-    Invoke-item $var
+    Invoke-item $WPFClientFolderPath_Text.Text
 }    
 
 
