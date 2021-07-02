@@ -84,10 +84,12 @@ get-variable WPF*
  
 Get-FormVariables
 
+echo "----------------------------------------------------------------------"," "
+
 #===========================================================================
 # Use this space to add code to the various form elements in your GUI
 #===========================================================================
-$datasource = "C:\Users\alecmcclure.adu\Documents\Programming\Database\ClientDatabase1.accdb"
+$datasource = "C:\Users\alecb\Documents\Programming\Database\ClientDatabase1.accdb"
 
 $access = Connect-Access -DataSource $datasource
 
@@ -109,54 +111,50 @@ function Search-Client ([string]$FirstName)
     $WPFState_Text.Text = $client.State
     $WPFZipCode_Text.Text = $client.Zipcode
     $WPFCompanies_Text.Text = $client.Companies
-    $WPFClientFolderPath_Text.Text = $client.ClientFolderPath
-
-    $ClientFolderPath = $WPFClientFolderPath_Text.Text    
+    $WPFClientFolderPath_Text.Text = $client.ClientFolderPath_Text    
 }
 
-#$assembly = @([System.Diagnostics],[System.IO])
+$ClientFolderPath = $WPFClientFolderPath_Text.Text
 
-$test_path = '@`"C:\Users`"'
+function Open-Folder
+{  
+    [HelloWorld.Program]::openFolder([regex]"$ClientFolderPath")
+}    
 
-$Some_Code = 
-@'
+<#
+$code = @"
 using System.Diagnostics;
 using System.IO;
 
-
-public class program 
+namespace HelloWorld
 {
-    public void main()
+    public class Program
     {
-        openFolder(@"C:\Users\");
-    }
-        
-    private void openFolder(string filepath)
-    {
-        ProcessStartInfo startInfo = new ProcessStartInfo
+       
+        public static void openFolder(string filepath)
         {
-            Arguments = filepath,
-            FileName = "explorer.exe"
-        };
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                Arguments = filepath,
+                FileName = "explorer.exe"
+            };
 
-        Process.Start(startInfo);
+            Process.Start(startInfo);
+        }
     }
 }
+"@
+#>
+#Add-Type -TypeDefinition $code -Language CSharp
 
-'@
-
-Add-Type -TypeDefinition $Some_Code -Language CSharp
-Invoke-Expression "[program]::main()"
 $WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.Text})
 
-
-
-
+$WPFOpenClientFolder_Button.Add_Click({Open-Folder})
 
 #===========================================================================
 # Shows the form
 #===========================================================================
 
-write-host "To show the form, run the following" -ForegroundColor Cyan
+#write-host "To show the form, run the following" -ForegroundColor Cyan
 
-#$Form.ShowDialog() | out-null
+$Form.ShowDialog() | out-null
