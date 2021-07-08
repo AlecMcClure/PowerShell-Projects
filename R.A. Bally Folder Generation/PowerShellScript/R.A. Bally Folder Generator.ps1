@@ -1,8 +1,8 @@
 #<You must use install-module accesscmdlets in an administrator Powershell to run this script >#
 
-$datasource = "C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\SampleDatabase\SampleDatabase.accdb"
+$datasource = "C:\PowerShell Testing\Database\SampleDatabase.accdb"
 
-$Clients_FilePath = "C:\Users\alecmcclure.ADU\Documents\Programming\Clients\"
+$Clients_FilePath = "C:\PowerShell Testing\Clients\"
 
 $access = Connect-Access -DataSource "$datasource"
 

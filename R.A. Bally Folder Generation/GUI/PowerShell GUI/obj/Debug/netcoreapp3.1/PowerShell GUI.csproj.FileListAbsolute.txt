@@ -36,3 +36,22 @@ C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder 
 C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.dll
 C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.pdb
 C:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.genruntimeconfig.cache
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\bin\Debug\netcoreapp3.1\PowerShell GUI.exe
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\bin\Debug\netcoreapp3.1\PowerShell GUI.deps.json
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\bin\Debug\netcoreapp3.1\PowerShell GUI.runtimeconfig.json
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\bin\Debug\netcoreapp3.1\PowerShell GUI.runtimeconfig.dev.json
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\bin\Debug\netcoreapp3.1\PowerShell GUI.dll
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\bin\Debug\netcoreapp3.1\PowerShell GUI.pdb
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.csproj.AssemblyReference.cache
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI_MarkupCompile.cache
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI_MarkupCompile.lref
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.g.resources
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.AssemblyInfoInputs.cache
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.AssemblyInfo.cs
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.csproj.CoreCompileInputs.cache
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.dll
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.pdb
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\PowerShell GUI.genruntimeconfig.cache
