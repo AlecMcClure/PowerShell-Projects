@@ -1,20 +1,20 @@
 ﻿PowerShell GUI
-1.0.0.0
+
 
 winexe
 C#
 .cs
-c:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\obj\Debug\netcoreapp3.1\
 PowerShell_GUI
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-c:\Users\alecmcclure.ADU\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\App.xaml
-11407045341
+C:\Users\alecb\Documents\GitHub\PowerShell-Projects\R.A. Bally Folder Generation\GUI\PowerShell GUI\App.xaml
+21940794329
 
-51157343464
+4-303829845
 192-1533232326
-MainWindow.xaml;
+MainWindow.xaml;Window1.xaml;
 
 True
 
