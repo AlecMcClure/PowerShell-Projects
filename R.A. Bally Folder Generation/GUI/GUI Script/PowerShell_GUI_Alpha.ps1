@@ -94,14 +94,12 @@ echo "----------------------------------------------------------------------"," 
 #===========================================================================
 
 # Database Connection
-$datasource = "C:\PowerShell Testing\Database\SampleDatabase.accdb"
-
-$access = Connect-Access -DataSource $datasource
+[System.Collections.ArrayList]$script:datasource = Import-Csv -Path "C:\PowerShell Testing\Database\ClientMasterTest.csv"
 
 # Functions
 function Search-Client ([string]$FirstName)
 {
-    [array]$client = $client = Invoke-Access -Connection $access -Query "SELECT * FROM ClientMasterFile WHERE ([FirstName] = `'$FirstName`');" | select -Property FirstName,Middle,LastName,Spouse,Age,Card,StreetAddress1,City,State,Zipcode,Companies,ClientFolderPath  
+    [array]$client = $client = $datasource | select * | ? FirstName -EQ $FirstName
     $WPFEntryNumber_Text.Text = $client.EntryNumber
     $WPFFirstName_Text.Text = $client.FirstName
     $WPFLastName_Text.Text = $client.LastName
@@ -109,13 +107,26 @@ function Search-Client ([string]$FirstName)
     $WPFSpouse_Text.Text = $client.Spouse
     $WPFAge_Text.Text = $client.Age
     $WPFCard_Text.Text = $client.Card
-    $WPFStreetAddress_Text.Text = $client.StreetAddress1
+    $WPFStreetAddress_Text.Text = $client.StreetAddress
     $WPFCity_Text.Text = $client.City
     $WPFState_Text.Text = $client.State
     $WPFZipCode_Text.Text = $client.Zipcode
     $WPFCompanies_Text.Text = $client.Companies
     $WPFClientFolderPath_Text.Text = $client.ClientFolderPath
+    
     $script:folder = $WPFClientFolderPath_Text.Text
+    $script:Client_EntryNumber = $WPFEntryNumber_Text.Text
+    $script:Client_FirstName = $WPFFirstName_Text.Text
+    $script:Client_LastName = $WPFLastName_Text.Text
+    $script:Client_Middle = $WPFMiddle_Text.Text
+    $script:Client_Spouse = $WPFSpouse_Text.Text
+    $script:Client_DateOfBirth = $WPFDateOfBirth_Text.Text
+    $script:Client_Card = $WPFCard_Text.Text
+    $script:Client_StreetAddress = $WPFStreetAddress_Text.Text
+    $script:Client_City = $WPFCity_Text.Text
+    $script:Client_State = $WPFState_Text.text
+    $script:Client_ZipCode = $WPFZipCode_Text.Text
+    $script:Client_Companies = $WPFCompanies_Text.Text
 }
 
 function Open-Folder
@@ -125,6 +136,7 @@ function Open-Folder
 
 function Clear-Form
 {
+    $WPFEntryNumber_Text.Text = $null
     $WPFFirstName_Text.Text = $null
     $WPFLastName_Text.Text = $null
     $WPFMiddle_Text.Text = $null
@@ -137,27 +149,24 @@ function Clear-Form
     $WPFZipCode_Text.Text = $null
     $WPFCompanies_Text.Text = $null
     $WPFClientFolderPath_Text.Text = $null
-    $script:folder = $WPFClientFolderPath_Text.Text
 }
-
-$Client_EntryNumber = $WPFEntryNumber_Text.Text
-#$Client_FirstName = $WPFFirstName_Text.Text
-$Client_LastName = $WPFLastName_Text.Text
-#$Client_Middle = $WPFMiddle_Text.Text
-$Client_Spouse = $WPFSpouse_Text.Text
-#$Client_DateOfBirth = $WPFDateOfBirth_Text.Text
-$Client_Card = $WPFCard_Text.Text
-$Client_StreetAddress1 = $WPFStreetAddress_Text.Text
-$Client_City = $WPFCity_Text.Text
-$Client_State = $WPFState_Text.text
-$Client_ZipCode = $WPFZipCode_Text.Text
-$Client_Companies = $WPFCompanies_Text.Text
 
 function Update-Client
 {
-    Invoke-Access -Connection $access -Query "UPDATE ClientMasterFile SET [LastName] = '$Client_LastName', [Spouse] = '$Client_Spouse', [Card] = '$Client_Card', [StreetAddress1] = '$Client_StreetAddress1', [City] = '$Client_City', [State] = '$Client_State', [ZipCode] = '$Client_ZipCode', [Companies] = '$Client_Companies' WHERE [EntryNumber] = '$Client_EntryNumber';"
-}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.FirstName = $WPFFirstName_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.LastName = $WPFLastName_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.Middle = $WPFMiddle_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.Spouse = $WPFSpouse_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.Card = $WPFCard_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.StreetAddress = $WPFStreetAddress_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.City = $WPFCity_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.State = $WPFState_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.Zipcode = $WPFZipCode_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.Companies = $WPFCompanies_Text.Text}
 
+    $script:datasource | sort { [int]$_.EntryNumber } -Unique |select * | Export-Csv -Path "C:\PowerShell Testing\Database\ClientMasterTest.csv" -NoTypeInformation -Force
+
+}
 # Buttons
 $WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.Text})
 
@@ -176,5 +185,3 @@ $WPFUpdateClient_Button.Add_Click({Update-Client})
 #write-host "To show the form, run the following" -ForegroundColor Cyan
 
 $Form.ShowDialog() | Out-Null
-
-Disconnect-Access -Connection $access
