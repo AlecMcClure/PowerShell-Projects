@@ -20,7 +20,7 @@ $inputXML = @'
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
-		<TextBox x:Name="FirstName_Text" HorizontalAlignment="Left" Margin="52,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" Height="18"/>
+		<TextBox x:Name="FirstName_Text" HorizontalAlignment="Left" Margin="52,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="109" Height="18"/>
 		<Label x:Name="FirstName_Label" Content="First Name" HorizontalAlignment="Left" Margin="73,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="67"/>
 		<Label x:Name="Middle_Label" Content="Middle" HorizontalAlignment="Left" Margin="154,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="48"/>
 		<Label x:Name="LastName_Label" Content="Last Name" HorizontalAlignment="Left" Margin="225,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="66"/>
@@ -28,12 +28,12 @@ $inputXML = @'
 		<Label x:Name="Age_Label" Content="Age" HorizontalAlignment="Left" Margin="519,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="31"/>
 		<Label x:Name="Spouse_Label" Content="Spouse" HorizontalAlignment="Left" Margin="356,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="50"/>
 		<Label x:Name="Card_Label" Content="Card?" HorizontalAlignment="Left" Margin="548,41,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="24" Width="40"/>
-		<TextBox x:Name="Middle_Text" HorizontalAlignment="Left" Margin="170,71,0,0" TextWrapping="Wrap" Width="16"/>
-		<TextBox x:Name="LastName_Text" HorizontalAlignment="Left" Margin="195,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Height="18"/>
-		<TextBox x:Name="Spouse_Text" HorizontalAlignment="Left" Margin="335,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="18"/>
-		<TextBox x:Name="DateOfBirth_Text" HorizontalAlignment="Left" Margin="435,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Height="18"/>
-		<TextBox x:Name="Age_Text" HorizontalAlignment="Left" Margin="525,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" Height="18"/>
-		<TextBox x:Name="Card_Text" HorizontalAlignment="Left" Margin="555,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="26" Height="18"/>
+		<TextBox x:Name="Middle_Text" HorizontalAlignment="Left" Margin="170,71,0,0" TextWrapping="Wrap" Width="16" VerticalAlignment="Center"/>
+		<TextBox x:Name="LastName_Text" HorizontalAlignment="Left" Margin="195,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Height="18"/>
+		<TextBox x:Name="Spouse_Text" HorizontalAlignment="Left" Margin="335,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="91" Height="18"/>
+		<TextBox x:Name="DateOfBirth_Text" HorizontalAlignment="Left" Margin="435,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="81" Height="18"/>
+		<TextBox x:Name="Age_Text" HorizontalAlignment="Left" Margin="525,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="21" Height="18"/>
+		<TextBox x:Name="Card_Text" HorizontalAlignment="Left" Margin="555,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="26" Height="18"/>
 		<TextBox x:Name="StreetAddress_Text" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Width="270" VerticalAlignment="Center" Height="18"/>
 		<TextBox x:Name="City_Text" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Margin="305,0,0,0"/>
 		<TextBox x:Name="State_Text" HorizontalAlignment="Left" Margin="444,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="30" Height="18"/>
@@ -42,17 +42,32 @@ $inputXML = @'
 		<Label x:Name="City_Label" Content="City" HorizontalAlignment="Left" Margin="350,6,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="30"/>
 		<Label x:Name="State_Label" Content="State" HorizontalAlignment="Left" Margin="441,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="36"/>
 		<Label x:Name="ZipCode_Label" Content="Zip Code" HorizontalAlignment="Left" Margin="507,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="58"/>
-		<TextBox x:Name="Companies_Text" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="562" Height="18"/>
-		<Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110" Margin="0,5,0,0"/>
-		<TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Left" Grid.Row="3" Text="&#xD;&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="512" Height="18" Margin="11,30,0,0"/>
+		<TextBox x:Name="Companies_Text" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="562" Height="18"/>
+		<Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110" Margin="226,4,0,0"/>
+		<TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Left" Grid.Row="3" Text="&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="505" Height="18" Margin="11,30,0,0"/>
 		<Label x:Name="ClientFolderPath_Label" Content="Client File Path" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="90" Margin="0,4,0,0"/>
 		<Button x:Name="OpenClientFolder_Button" Content="Open File" Margin="527,30,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20"/>
 		<Button x:Name="SearchClient_Button" Content="Search Client" HorizontalAlignment="Left" Margin="63,16,0,0" VerticalAlignment="Top" Height="20" Width="73"/>
 		<Button x:Name="NewClient_Button" Content="New Client" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="74" Margin="414,16,0,0"/>
 		<Button x:Name="ClearForm_Button" Content="Clear Form" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Margin="176,16,0,0"/>
 		<Button x:Name="UpdateClient_Button" Content="Update Client" HorizontalAlignment="Left" Margin="293,16,0,0" VerticalAlignment="Top" Width="81"/>
-		<TextBox x:Name="EntryNumber_Text" HorizontalAlignment="Left" Margin="10,71,0,83" TextWrapping="Wrap" Width="37" Grid.RowSpan="2"/>
+		<TextBox x:Name="EntryNumber_Text" HorizontalAlignment="Left" Margin="10,71,0,83" TextWrapping="Wrap" Width="37" Grid.RowSpan="2" VerticalAlignment="Center"/>
 		<Label x:Name="EntryNumber_Label" Content="ID" HorizontalAlignment="Left" Margin="18,42,0,0" VerticalAlignment="Top" Foreground="#FF007ACC"/>
+		<DataGrid Name="Datagrid" Grid.Row="4" Background="#FF252526" Foreground="#FF007ACC" AutoGenerateColumns="True" >
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Entry Number" Binding="{Binding EntryNumber}"/>
+				<DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+				<DataGridTextColumn Header="Middle" Binding="{Binding Middle}"/>
+				<DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+				<DataGridTextColumn Header="Spouse" Binding="{Binding Spouse}"/>
+				<DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}"/>
+				<DataGridTextColumn Header="Street Address" Binding="{Binding StreetAddress}"/>
+				<DataGridTextColumn Header="City" Binding="{Binding City}"/>
+				<DataGridTextColumn Header="State" Binding="{Binding State}"/>
+				<DataGridTextColumn Header="Zip Code" Binding="{Binding ZipCode}"/>
+				<DataGridTextColumn Header="Companies" Binding="{Binding Companies}"/>
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
 </Window>
 '@
@@ -142,9 +157,21 @@ function Search-Client
 {
     param (
         [string]$FirstName,
-        [string]$LastName
+        [string]$LastName,
+        [string]$EntryNumber
     )
-    [array]$client = $client = $datasource | select * | ? {($_.FirstName -eq $FirstName) -xor ($_.LastName -eq $LastName)}
+
+    try{
+    [System.Collections.ArrayList]$clients = $client = $datasource | select * | ? {($_.FirstName -eq $FirstName) -or ($_.EntryNumber -eq $EntryNumber) -or ($_.LastName -eq $LastName)}
+    }
+    catch{
+    }
+
+        foreach ($client in $clients)
+    {
+        $WPFDatagrid.AddChild([pscustomobject]@{EntryNumber = $client.EntryNumber;FirstName = $client.FirstName ; Middle = $client.Middle ; LastName = $client.LastName ; Spouse = $client.Spouse ; DateOfBirth = $client.DateOfBirth; StreetAddress = $client.StreetAddress ; City = $client.City ; State = $client.State ; ZipCode = $client.ZipCode; Companies = $client.Companies})
+    }
+
     $WPFEntryNumber_Text.Text = $client.EntryNumber
     $WPFFirstName_Text.Text = $client.FirstName
     $WPFLastName_Text.Text = $client.LastName
@@ -158,7 +185,7 @@ function Search-Client
     $WPFZipCode_Text.Text = $client.Zipcode
     $WPFCompanies_Text.Text = $client.Companies
     $WPFClientFolderPath_Text.Text = $client.ClientFolderPath
-    $WPFDateOfBirth_Text.Text = $client.DateOfBirth
+    $WPFDateOfBirth_Text.Text = $client.DateOfBirth    
 }   
 
     
@@ -183,6 +210,7 @@ function Clear-Form
     $WPFCompanies_Text.Text = $null
     $WPFClientFolderPath_Text.Text = $null
     $WPFDateOfBirth_Text.Text = $null
+    $WPFDataGrid.items.Clear()
 }
 
 function Update-Client
@@ -200,6 +228,8 @@ function Update-Client
     $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.DateOfBirth = $WPFDateOfBirth_Text.Text}
 
     $script:datasource | sort { [int]$_.EntryNumber } -Unique |select * | Export-Csv -Path "C:\PowerShell Testing\Database\Test.csv" -NoTypeInformation -Force
+
+    Clear-Form
 }
 
 function New-Client
@@ -215,14 +245,15 @@ function New-Client
     Calculate-Age($script:datasource)
 }
 # Buttons
-$WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.Text -LastName $WPFLastName_Text.Text})
+$WPFSearchClient_Button.Add_Click({Search-Client -FirstName $WPFFirstName_Text.Text -LastName $WPFLastName_Text.Text -EntryNumber $WPFEntryNumber_Text.Text})
 
 $WPFOpenClientFolder_Button.Add_Click({Open-Folder})
 
 $WPFClearForm_Button.Add_Click({Clear-Form})
 
-$WPFFirstName_Text.Add_KeyDown({if ($_.Key -eq "Enter"){Search-Client -FirstName $WPFFirstName_Text.Text -LastName $WPFLastName_Text.Text}})
-$WPFLastName_Text.Add_KeyDown({if ($_.Key -eq "Enter"){Search-Client -FirstName $WPFFirstName_Text.Text -LastName $WPFLastName_Text.Text}})
+$WPFFirstName_Text.Add_KeyDown({if ($_.Key -eq "Enter"){Search-Client -FirstName $WPFFirstName_Text.Text -LastName $WPFLastName_Text.Text -EntryNumber $WPFEntryNumber_Text.Text}})
+$WPFLastName_Text.Add_KeyDown({if ($_.Key -eq "Enter"){Search-Client -FirstName $WPFFirstName_Text.Text -LastName $WPFLastName_Text.Text -EntryNumber $WPFEntryNumber_Text.Text}})
+$WPFEntryNumber_Text.Add_KeyDown({if ($_.Key -eq "Enter"){Search-Client -EntryNumber $WPFEntryNumber_Text.Text}})
 
 $WPFUpdateClient_Button.Add_Click({Update-Client})
 
@@ -234,4 +265,6 @@ $WPFNewClient_Button.Add_Click({New-Client})
 
 #write-host "To show the form, run the following" -ForegroundColor Cyan
 
-$Form.ShowDialog() | Out-Null
+$WPFDatagrid.add_SelectionChanged({Search-Client -EntryNumber ($WPFDatagrid.SelectedItem | select -ExpandProperty EntryNumber)})
+
+$Form.ShowDialog() | Out-Null -ErrorAction Ignore
