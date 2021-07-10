@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\bin",
+    "\\obj"
   ],
   "SelectedNode": "\\PowerShell GUI.sln",
   "PreviewInSolutionExplorer": false

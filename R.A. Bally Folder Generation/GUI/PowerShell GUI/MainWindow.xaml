@@ -6,71 +6,68 @@
         xmlns:local="clr-namespace:PowerShell_GUI"
         mc:Ignorable="d"
         Title="PowerShell GUI" Height="500" Width="1000" Background="#FF252526" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-	<Window.Resources>
-		<ResourceDictionary>
-			<ScaleTransform x:Key="windowScaleTransform" ScaleX="0.5" ScaleY="0.5" />
-		</ResourceDictionary>
-	</Window.Resources>
-	<Grid x:Name="Grid_Grid" HorizontalAlignment="Center" VerticalAlignment="Stretch">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto" MinHeight="83"/>
-			<RowDefinition Height="Auto" MinHeight="77"/>
-			<RowDefinition Height="Auto" MinHeight="60"/>
-			<RowDefinition Height="Auto" MinHeight="65"/>
-			<RowDefinition Height="Auto" MinHeight="5"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-		</Grid.ColumnDefinitions>
-		<TextBox x:Name="FirstName_Text" HorizontalAlignment="Left" Margin="52,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="109" Height="18"/>
-		<Label x:Name="FirstName_Label" Content="First Name" HorizontalAlignment="Left" Margin="73,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="67"/>
-		<Label x:Name="Middle_Label" Content="Middle" HorizontalAlignment="Left" Margin="154,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="48"/>
-		<Label x:Name="LastName_Label" Content="Last Name" HorizontalAlignment="Left" Margin="225,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="66"/>
-		<Label x:Name="DateOfBirth_Label" Content="Date Of Birth" HorizontalAlignment="Left" Margin="436,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="78"/>
-		<Label x:Name="Age_Label" Content="Age" HorizontalAlignment="Left" Margin="519,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="31"/>
-		<Label x:Name="Spouse_Label" Content="Spouse" HorizontalAlignment="Left" Margin="356,40,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="50"/>
-		<Label x:Name="Card_Label" Content="Card?" HorizontalAlignment="Left" Margin="548,41,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="24" Width="40"/>
-		<TextBox x:Name="Middle_Text" HorizontalAlignment="Left" Margin="170,71,0,0" TextWrapping="Wrap" Width="16" VerticalAlignment="Center"/>
-		<TextBox x:Name="LastName_Text" HorizontalAlignment="Left" Margin="195,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Height="18"/>
-		<TextBox x:Name="Spouse_Text" HorizontalAlignment="Left" Margin="335,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="91" Height="18"/>
-		<TextBox x:Name="DateOfBirth_Text" HorizontalAlignment="Left" Margin="435,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="81" Height="18"/>
-		<TextBox x:Name="Age_Text" HorizontalAlignment="Left" Margin="525,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="21" Height="18"/>
-		<TextBox x:Name="Card_Text" HorizontalAlignment="Left" Margin="555,71,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="26" Height="18"/>
-		<TextBox x:Name="StreetAddress_Text" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Width="270" VerticalAlignment="Center" Height="18"/>
-		<TextBox x:Name="City_Text" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Margin="305,0,0,0"/>
-		<TextBox x:Name="State_Text" HorizontalAlignment="Left" Margin="444,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="30" Height="18"/>
-		<TextBox x:Name="ZipCode_Text" HorizontalAlignment="Left" Margin="490,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="44" Height="18"/>
-		<Label x:Name="StreetAddress_Label" Content="Street Address" HorizontalAlignment="Left" Margin="102,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="86"/>
-		<Label x:Name="City_Label" Content="City" HorizontalAlignment="Left" Margin="350,6,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="30"/>
-		<Label x:Name="State_Label" Content="State" HorizontalAlignment="Left" Margin="441,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="36"/>
-		<Label x:Name="ZipCode_Label" Content="Zip Code" HorizontalAlignment="Left" Margin="483,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="58"/>
-		<TextBox x:Name="Companies_Text" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="562" Height="18"/>
-		<Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110" Margin="226,4,0,0"/>
-		<TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Left" Grid.Row="3" Text="&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="505" Height="18" Margin="11,30,0,0"/>
-		<Label x:Name="ClientFolderPath_Label" Content="Client File Path" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="90" Margin="0,4,0,0"/>
-		<Button x:Name="OpenClientFolder_Button" Content="Open File" Margin="527,30,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20"/>
-		<Button x:Name="SearchClient_Button" Content="Search Client" HorizontalAlignment="Left" Margin="63,16,0,0" VerticalAlignment="Top" Height="20" Width="73"/>
-		<Button x:Name="NewClient_Button" Content="New Client" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="74" Margin="414,16,0,0"/>
-		<Button x:Name="ClearForm_Button" Content="Clear Form" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Margin="176,16,0,0"/>
-		<Button x:Name="UpdateClient_Button" Content="Update Client" HorizontalAlignment="Left" Margin="293,16,0,0" VerticalAlignment="Top" Width="81"/>
-		<TextBox x:Name="EntryNumber_Text" HorizontalAlignment="Left" Margin="10,71,0,83" TextWrapping="Wrap" Width="37" Grid.RowSpan="2" VerticalAlignment="Center"/>
-		<Label x:Name="EntryNumber_Label" Content="ID" HorizontalAlignment="Left" Margin="18,42,0,0" VerticalAlignment="Top" Foreground="#FF007ACC"/>
-		<DataGrid Name="Datagrid" Grid.Row="4" Background="#FF252526" Foreground="#FF007ACC" AutoGenerateColumns="True" >
-			<DataGrid.Columns>
-				<DataGridCheckBoxColumn/>
-				<DataGridTextColumn Header="Entry Number" Binding="{Binding EntryNumber}"/>
-				<DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
-				<DataGridTextColumn Header="Middle" Binding="{Binding Middle}"/>
-				<DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
-				<DataGridTextColumn Header="Spouse" Binding="{Binding Spouse}"/>
-				<DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}"/>
-				<DataGridTextColumn Header="Street Address" Binding="{Binding StreetAddress}"/>
-				<DataGridTextColumn Header="City" Binding="{Binding City}"/>
-				<DataGridTextColumn Header="State" Binding="{Binding State}"/>
-				<DataGridTextColumn Header="Zip Code" Binding="{Binding ZipCode}"/>
-				<DataGridTextColumn Header="Companies" Binding="{Binding Companies}"/>
-			</DataGrid.Columns>
-		</DataGrid>
-	</Grid>
+	<Viewbox Stretch="Uniform">
+		<Grid x:Name="Grid_Grid" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto" MinHeight="83"/>
+				<RowDefinition Height="Auto" MinHeight="77"/>
+				<RowDefinition Height="Auto" MinHeight="60"/>
+				<RowDefinition Height="Auto" MinHeight="65"/>
+				<RowDefinition Height="Auto" MinHeight="5"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<TextBox x:Name="FirstName_Text" HorizontalAlignment="Center" Margin="52,71,480,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="109" Height="18"/>
+			<Label x:Name="FirstName_Label" Content="First Name" HorizontalAlignment="Center" Margin="73,40,495,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="67"/>
+			<Label x:Name="Middle_Label" Content="Middle" HorizontalAlignment="Center" Margin="154,40,415,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="48"/>
+			<Label x:Name="LastName_Label" Content="Last Name" HorizontalAlignment="Center" Margin="225,40,290,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="66"/>
+			<Label x:Name="DateOfBirth_Label" Content="Date Of Birth" HorizontalAlignment="Center" Margin="436,40,60,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="78"/>
+			<Label x:Name="Age_Label" Content="Age" HorizontalAlignment="Center" Margin="519,40,10,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="31"/>
+			<Label x:Name="Spouse_Label" Content="Spouse" HorizontalAlignment="Center" Margin="393,40,220,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="50"/>
+			<Label x:Name="Card_Label" Content="Card?" HorizontalAlignment="Center" Margin="627,41,25,0" VerticalAlignment="Top" Foreground="#FF007ACC" Height="24" Width="40"/>
+			<TextBox x:Name="Middle_Text" HorizontalAlignment="Center" Margin="170,71,430,0" TextWrapping="Wrap" Width="16" VerticalAlignment="Center"/>
+			<TextBox x:Name="LastName_Text" HorizontalAlignment="Center" Margin="195,71,270,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Height="18"/>
+			<TextBox x:Name="Spouse_Text" HorizontalAlignment="Center" Margin="335,71,160,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="91" Height="18"/>
+			<TextBox x:Name="DateOfBirth_Text" HorizontalAlignment="Center" Margin="435,71,60,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="81" Height="18"/>
+			<TextBox x:Name="Age_Text" HorizontalAlignment="Center" Margin="525,71,10,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="21" Height="18"/>
+			<TextBox x:Name="Card_Text" HorizontalAlignment="Center" Margin="601,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="26" Height="18"/>
+			<TextBox x:Name="StreetAddress_Text" HorizontalAlignment="Center" Margin="10,0,300,0" Grid.Row="1" TextWrapping="Wrap" Width="270" VerticalAlignment="Center" Height="18"/>
+			<TextBox x:Name="City_Text" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Margin="305,0,150,0"/>
+			<TextBox x:Name="State_Text" HorizontalAlignment="Center" Margin="444,0,90,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="30" Height="18"/>
+			<TextBox x:Name="ZipCode_Text" HorizontalAlignment="Center" Margin="490,0,30,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="44" Height="18"/>
+			<Label x:Name="StreetAddress_Label" Content="Street Address" HorizontalAlignment="Center" Margin="102,5,400,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="86"/>
+			<Label x:Name="City_Label" Content="City" HorizontalAlignment="Center" Margin="350,6,195,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="30"/>
+			<Label x:Name="State_Label" Content="State" HorizontalAlignment="Center" Margin="441,5,90,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="36"/>
+			<Label x:Name="ZipCode_Label" Content="Zip Code" HorizontalAlignment="Center" Margin="483,5,25,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="58"/>
+			<TextBox x:Name="Companies_Text" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="562" Height="18"/>
+			<Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110" Margin="296,4,0,0"/>
+			<TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Center" Grid.Row="3" Text="&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="505" Height="18" Margin="11,30,0,0"/>
+			<Label x:Name="ClientFolderPath_Label" Content="Client File Path" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="90" Margin="0,4,0,0"/>
+			<Button x:Name="OpenClientFolder_Button" Content="Open File" Margin="620,29,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" HorizontalAlignment="Left"/>
+			<Button x:Name="SearchClient_Button" Content="Search Client" HorizontalAlignment="Center" Margin="63,16,400,0" VerticalAlignment="Top" Height="20" Width="81"/>
+			<Button x:Name="NewClient_Button" Content="New Client" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="74" Margin="414,16,100,0"/>
+			<Button x:Name="ClearForm_Button" Content="Clear Form" HorizontalAlignment="Center" VerticalAlignment="Top" Width="73" Margin="176,16,300,0"/>
+			<Button x:Name="UpdateClient_Button" Content="Update Client" HorizontalAlignment="Center" Margin="293,16,200,0" VerticalAlignment="Top" Width="81"/>
+			<TextBox x:Name="EntryNumber_Text" HorizontalAlignment="Center" Margin="10,71,620,83" TextWrapping="Wrap" Width="37" Grid.RowSpan="2" VerticalAlignment="Center"/>
+			<Label x:Name="EntryNumber_Label" Content="ID" HorizontalAlignment="Center" Margin="18,42,630,0" VerticalAlignment="Top" Foreground="#FF007ACC"/>
+			<DataGrid Name="Datagrid" Grid.Row="4" Background="#FF252526" Foreground="#FF007ACC" AutoGenerateColumns="True" >
+				<DataGrid.Columns>
+					<DataGridCheckBoxColumn/>
+					<DataGridTextColumn Header="Entry Number" Binding="{Binding EntryNumber}"/>
+					<DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+					<DataGridTextColumn Header="Middle" Binding="{Binding Middle}"/>
+					<DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+					<DataGridTextColumn Header="Spouse" Binding="{Binding Spouse}"/>
+					<DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}"/>
+					<DataGridTextColumn Header="Street Address" Binding="{Binding StreetAddress}"/>
+					<DataGridTextColumn Header="City" Binding="{Binding City}"/>
+					<DataGridTextColumn Header="State" Binding="{Binding State}"/>
+					<DataGridTextColumn Header="Zip Code" Binding="{Binding ZipCode}"/>
+					<DataGridTextColumn Header="Companies" Binding="{Binding Companies}"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+	</Viewbox>
 </Window>
