@@ -1,4 +1,4 @@
-$CSVPath = "C:\PowerShell Testing\Database\ClientMasterTest.csv"
+$CSVPath = "C:\PowerShell Testing\Database\ClientMaster.csv"
 
 $Clients_FilePath = "C:\PowerShell Testing\Clients\"
 
@@ -8,7 +8,7 @@ $script:Updated_Clients = @()
 
 function Merge-Updates 
 {
-    $script:Updated_Clients | sort { [int]$_.EntryNumber } -Unique |select * | Export-Csv -Path "C:\PowerShell Testing\Database\ClientMasterTest.csv" -NoTypeInformation
+    $script:Updated_Clients | sort { [int]$_.EntryNumber } -Unique |select * | Export-Csv -Path "C:\PowerShell Testing\Database\ClientMaster.csv" -NoTypeInformation
 }
 
 [System.Collections.ArrayList]$Empty_Path = $Clients | Select * | ? ClientFolderPath -EQ ''
