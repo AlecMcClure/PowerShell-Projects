@@ -45,14 +45,14 @@
             <Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110" Margin="296,4,0,0"/>
             <TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Center" Grid.Row="3" Text="&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="505" Height="18" Margin="11,30,0,0"/>
             <Label x:Name="ClientFolderPath_Label" Content="Client File Path" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="90" Margin="0,4,0,0"/>
-            <Button x:Name="OpenClientFolder_Button" Content="Open File" Margin="624,29,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" HorizontalAlignment="Left"/>
+            <Button x:Name="OpenClientFolder_Button" Content="Open File" Margin="624,29,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" HorizontalAlignment="Center"/>
             <Button x:Name="SearchClient_Button" Content="Search Client" HorizontalAlignment="Center" Margin="63,16,500,0" VerticalAlignment="Top" Height="20" Width="76"/>
             <Button x:Name="NewClient_Button" Content="New Client" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Margin="414,16,200,0" Width="76"/>
             <Button x:Name="ClearForm_Button" Content="Clear Form" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="176,16,400,0" Width="76"/>
             <Button x:Name="UpdateClient_Button" Content="Update Client" HorizontalAlignment="Center" Margin="293,16,300,0" VerticalAlignment="Top" Width="76"/>
             <TextBox x:Name="EntryNumber_Text" HorizontalAlignment="Center" Margin="10,71,620,83" TextWrapping="Wrap" Width="37" Grid.RowSpan="2" VerticalAlignment="Center"/>
             <Label x:Name="EntryNumber_Label" Content="ID" HorizontalAlignment="Center" Margin="18,42,630,0" VerticalAlignment="Top" Foreground="#FF007ACC"/>
-            <DataGrid Name="Datagrid" Grid.Row="4" Background="#FF252526" Foreground="#FF007ACC" AutoGenerateColumns="True" >
+            <DataGrid Name="Datagrid" Grid.Row="4" Background="#FF252526" Foreground="#FF007ACC" AutoGenerateColumns="True" Width="730" >
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn/>
                     <DataGridTextColumn Header="Entry Number" Binding="{Binding EntryNumber}"/>
@@ -68,7 +68,7 @@
                     <DataGridTextColumn Header="Companies" Binding="{Binding Companies}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="DeleteClient_Button" Content="Delete Client" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Margin="546,16,100,0" Width="76"/>
+            <Button x:Name="DeleteClient_Button" Content="Delete Client" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Margin="546,16,100,0" Width="76"/>
         </Grid>
     </Viewbox>
 </Window>
