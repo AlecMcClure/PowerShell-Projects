@@ -37,6 +37,7 @@
             <TextBox x:Name="City_Text" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Margin="305,0,150,0"/>
             <TextBox x:Name="State_Text" HorizontalAlignment="Center" Margin="444,0,90,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="30" Height="18"/>
             <TextBox x:Name="ZipCode_Text" HorizontalAlignment="Center" Margin="490,0,30,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="44" Height="18"/>
+            <TextBox x:Name="PhoneNumber_Text" HorizontalAlignment="Center" Margin="450,0,20,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="20" Height="18"/>
             <Label x:Name="StreetAddress_Label" Content="Street Address" HorizontalAlignment="Center" Margin="102,5,400,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="86"/>
             <Label x:Name="City_Label" Content="City" HorizontalAlignment="Center" Margin="350,6,195,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="30"/>
             <Label x:Name="State_Label" Content="State" HorizontalAlignment="Center" Margin="441,5,90,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="36"/>

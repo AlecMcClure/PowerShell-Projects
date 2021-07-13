@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alecmcclure.ADU\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\PowerShell GUI.csproj": {}
+    "C:\\Users\\alecb\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\PowerShell GUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alecmcclure.ADU\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\PowerShell GUI.csproj": {
+    "C:\\Users\\alecb\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\PowerShell GUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alecmcclure.ADU\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\PowerShell GUI.csproj",
+        "projectUniqueName": "C:\\Users\\alecb\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\PowerShell GUI.csproj",
         "projectName": "PowerShell GUI",
-        "projectPath": "C:\\Users\\alecmcclure.ADU\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\PowerShell GUI.csproj",
-        "packagesPath": "C:\\Users\\alecmcclure.ADU\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alecmcclure.ADU\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\obj\\",
+        "projectPath": "C:\\Users\\alecb\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\PowerShell GUI.csproj",
+        "packagesPath": "C:\\Users\\alecb\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alecb\\Documents\\GitHub\\PowerShell-Projects\\R.A. Bally Folder Generation\\GUI\\PowerShell GUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\alecmcclure.ADU\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alecb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

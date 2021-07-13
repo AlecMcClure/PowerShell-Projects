@@ -39,22 +39,28 @@ $inputXML = @'
             <TextBox x:Name="City_Text" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Margin="305,0,150,0"/>
             <TextBox x:Name="State_Text" HorizontalAlignment="Center" Margin="444,0,90,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="30" Height="18"/>
             <TextBox x:Name="ZipCode_Text" HorizontalAlignment="Center" Margin="490,0,30,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="44" Height="18"/>
+            <TextBox x:Name="PhoneNumber_Text" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="18" Margin="0,90,400,0" Width="81"/>
+            <TextBox x:Name="Email_Text" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="18" Margin="0,90,0,0" Width="Auto"/>
+            <TextBox x:Name="SSN_Text" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="18" Margin="400,90,0,0" Width="75"/>
             <Label x:Name="StreetAddress_Label" Content="Street Address" HorizontalAlignment="Center" Margin="102,5,400,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="86"/>
             <Label x:Name="City_Label" Content="City" HorizontalAlignment="Center" Margin="350,6,195,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="30"/>
             <Label x:Name="State_Label" Content="State" HorizontalAlignment="Center" Margin="441,5,90,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="36"/>
             <Label x:Name="ZipCode_Label" Content="Zip Code" HorizontalAlignment="Center" Margin="483,5,25,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="58"/>
+            <Label x:Name="PhoneNumber_Label" Content="Phone Number" HorizontalAlignment="Center" Margin="0,5,400,15" Grid.Row="1" VerticalAlignment="Bottom" Foreground="#FF007ACC" Height="26" Width="90"/>
+            <Label x:Name="Email_Label" Content="Email Address" HorizontalAlignment="Center" Margin="0,5,0,15" Grid.Row="1" VerticalAlignment="Bottom" Foreground="#FF007ACC" Height="26" Width="90"/>
+            <Label x:Name="SSN_Label" Content="Social Security" HorizontalAlignment="Center" Margin="402,5,0,15" Grid.Row="1" VerticalAlignment="Bottom" Foreground="#FF007ACC" Height="26" Width="90"/>
             <TextBox x:Name="Companies_Text" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="562" Height="18"/>
-            <Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110" Margin="296,4,0,0"/>
+            <Label x:Name="Companies_Label" Content="Companies On File" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="110" Margin="0,4,0,0"/>
             <TextBox x:Name="ClientFolderPath_Text" HorizontalAlignment="Center" Grid.Row="3" Text="&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="505" Height="18" Margin="11,30,0,0"/>
             <Label x:Name="ClientFolderPath_Label" Content="Client File Path" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Foreground="#FF007ACC" Height="26" Width="90" Margin="0,4,0,0"/>
-            <Button x:Name="OpenClientFolder_Button" Content="Open File" Margin="624,29,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" HorizontalAlignment="Left"/>
+            <Button x:Name="OpenClientFolder_Button" Content="Open File" Margin="624,30,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20" HorizontalAlignment="Center"/>
             <Button x:Name="SearchClient_Button" Content="Search Client" HorizontalAlignment="Center" Margin="63,16,500,0" VerticalAlignment="Top" Height="20" Width="76"/>
             <Button x:Name="NewClient_Button" Content="New Client" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Margin="414,16,200,0" Width="76"/>
             <Button x:Name="ClearForm_Button" Content="Clear Form" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="176,16,400,0" Width="76"/>
             <Button x:Name="UpdateClient_Button" Content="Update Client" HorizontalAlignment="Center" Margin="293,16,300,0" VerticalAlignment="Top" Width="76"/>
-            <TextBox x:Name="EntryNumber_Text" HorizontalAlignment="Center" Margin="10,71,620,83" TextWrapping="Wrap" Width="37" Grid.RowSpan="2" VerticalAlignment="Center"/>
-            <Label x:Name="EntryNumber_Label" Content="ID" HorizontalAlignment="Center" Margin="18,42,630,0" VerticalAlignment="Top" Foreground="#FF007ACC"/>
-            <DataGrid Name="Datagrid" Grid.Row="4" Background="#FF252526" Foreground="#FF007ACC" AutoGenerateColumns="True" >
+            <TextBox x:Name="EntryNumber_Text" HorizontalAlignment="Center" Margin="48,71,650,0" TextWrapping="Wrap" Width="37" VerticalAlignment="Top"/>
+            <Label x:Name="EntryNumber_Label" Content="ID" HorizontalAlignment="Center" Margin="54,41,655,0" VerticalAlignment="Top" Foreground="#FF007ACC"/>
+            <DataGrid Name="Datagrid" Grid.Row="4" Background="#FF252526" Foreground="#FF007ACC" AutoGenerateColumns="True" Width="730" >
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn/>
                     <DataGridTextColumn Header="Entry Number" Binding="{Binding EntryNumber}"/>
@@ -70,7 +76,7 @@ $inputXML = @'
                     <DataGridTextColumn Header="Companies" Binding="{Binding Companies}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="DeleteClient_Button" Content="Delete Client" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Margin="546,16,100,0" Width="76"/>
+            <Button x:Name="DeleteClient_Button" Content="Delete Client" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Margin="546,16,100,0" Width="76"/>
         </Grid>
     </Viewbox>
 </Window>
@@ -195,7 +201,10 @@ function Search-Client
     $WPFZipCode_Text.Text = $client.Zipcode
     $WPFCompanies_Text.Text = $client.Companies
     $WPFClientFolderPath_Text.Text = $client.ClientFolderPath
-    $WPFDateOfBirth_Text.Text = $client.DateOfBirth    
+    $WPFDateOfBirth_Text.Text = $client.DateOfBirth
+    $WPFPhoneNumber_Text.Text = $client.PhoneNumber
+    $WPFEmail_Text.Text = $client.EmailAddress
+    $WPFSSN_Text.Text = $client.SocialSecurity    
 }   
 
     
@@ -220,6 +229,9 @@ function Clear-Form
     $WPFCompanies_Text.Text = $null
     $WPFClientFolderPath_Text.Text = $null
     $WPFDateOfBirth_Text.Text = $null
+    $WPFPhoneNumber_Text.Text = $null
+    $WPFEmail_Text.Text = $null
+    $WPFSSN_Text.Text = $null
     $WPFDataGrid.items.Clear()
 }
 
@@ -257,6 +269,9 @@ function Update-Client
     $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.Companies = $WPFCompanies_Text.Text}
     $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.DateOfBirth = $WPFDateOfBirth_Text.Text}    
     $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.ClientFolderPath = $WPFClientFolderPath_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.PhoneNumber = $WPFPhoneNumber_Text.Text}
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.EmailAddress = $WPFEmail_Text.Text} 
+    $script:datasource | ? EntryNumber -EQ $WPFEntryNumber_Text.Text | foreach {$_.SocialSecurity = $WPFSSN_Text.Text}
 
     if ($WPFCompanies_Text.Text -ne 'n/a') 
     {
