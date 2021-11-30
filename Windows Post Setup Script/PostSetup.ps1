@@ -6,27 +6,17 @@ function join-domain {
     $name = [Microsoft.VisualBasic.Interaction]::InputBox("Enter Desired Computer Name ")
 
     $ComputerName = "$name"
-   
-    Remove-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -name "Hostname" 
-    Remove-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -name "NV Hostname" 
-
-    Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Computername\Computername" -name "Computername" -value $ComputerName
-    Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Computername\ActiveComputername" -name "Computername" -value $ComputerName
-    Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -name "Hostname" -value $ComputerName
-    Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -name "NV Hostname" -value  $ComputerName
-    Set-ItemProperty -path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -name "AltDefaultDomainName" -value $ComputerName
-    Set-ItemProperty -path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -name "DefaultDomainName" -value $ComputerName
 
     $Domain = "DOMAIN.NAME.LAB"
     $Server = "DOMAIN CONTROLLER"
-    Add-Computer -DomainName $Domain -DomainCredential $Credential -Server $Server -Verbose #-Restart -Force
+    Add-Computer -DomainName $Domain -DomainCredential $Credential -Server $Server -OUPath 'OU=COMPUTEROU,DC=DOMAIN,DC=DOMAIN,DC=com' -Verbose
 }
 
 function set-newip {
-    $IP = read-host -prompt "Enter Desired IP Address: "
+    $IP = read-host -prompt "Enter Desired IP Address "
     $MaskBits = 24 # This means subnet mask = 255.255.255.0
-    $Gateway = read-host -prompt "Enter Default Gateway: "
-    $Dns = read-host -prompt "Enter DNS Settings: "
+    $Gateway = read-host -prompt "Enter Default Gateway "
+    $Dns = read-host -prompt "Enter DNS Settings "
     
     $IPType = "IPv4"
     
@@ -78,8 +68,9 @@ sleep 2
 
 install-firefox
 
+Remove-Item -Path $appdeploy -Recurse
+
 Read-Host -Prompt "To finish setup a restart is required."
-Pause
 
 Restart-Computer
 
