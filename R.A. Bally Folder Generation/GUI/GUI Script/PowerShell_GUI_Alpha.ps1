@@ -312,7 +312,7 @@ function New-Client
         $Client_Folder_Path_Spouse = $Clients_FilePath + $FolderName_Spouse
     }
     
-    if ($WPFSpouse_Text -eq 'n/a')
+    if ($WPFSpouse_Text.Text -eq 'n/a')
     {
         $FolderName_NoSpouse = $WPFLastName_Text.Text + ', ' + $WPFFirstName_Text.Text
 
@@ -346,8 +346,6 @@ function New-Client
     Search-Client -EntryNumber $entrynumber
 
     Update-Client
-
-    Clear-Form
 }
 
 function Remove-Client([string]$ClientNumber)
