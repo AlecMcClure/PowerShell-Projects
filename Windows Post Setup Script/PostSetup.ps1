@@ -9,7 +9,7 @@ function join-domain {
 
     $Domain = "DOMAIN.NAME.LAB"
     $Server = "DOMAIN CONTROLLER"
-    Add-Computer -DomainName $Domain -DomainCredential $Credential -Server $Server -OUPath 'OU=COMPUTEROU,DC=DOMAIN,DC=DOMAIN,DC=com' -Verbose
+    Add-Computer -DomainName $Domain -DomainCredential $Credential -Server $Server -OUPath 'OU=COMPUTEROU,DC=DOMAIN,DC=DOMAIN,DC=com' -NewName $ComputerName -Verbose
 }
 
 function set-newip {
